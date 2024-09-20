@@ -1,8 +1,11 @@
 import React from "react";
+import LoginForm from "../components/LoginForm";
 
 const Home = () => {
     return(
-        <div>Hello, world</div>
+        <div className = "min-h-screen flex items-center justify-center bg-blue-100">
+            <LoginForm />
+        </div>
     );
 }
 
