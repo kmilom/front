@@ -1,13 +1,13 @@
 import React from "react";
-import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
 import Container from "../components/Container";
 
-const Home = () => {
+const Register = () => {
     return(
         <Container>
-            <LoginForm />
+            <RegisterForm />
         </Container>
     );
 }
 
-export default Home;
+export default Register;
