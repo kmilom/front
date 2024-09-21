@@ -4,3 +4,4 @@ A continuación se encuentran las librerías instaladas en el proyecto con sus r
 
 1. TailwindCSS: npm install -D tailwindcss postcss autoprefixer
 2. React-router-dom: npm install react-router-dom
+3. Axios: npm install axios
