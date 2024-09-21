@@ -50,8 +50,19 @@ const RegisterForm = () => {
 
     const handleSubmit = async(event) => {
         event.preventDefault();
-        console.log("Información del formulario: ", formData);
-        console.log("Info de usuario:", userData);
+        try {
+            const responsePerson = await axios.post('http://localhost:4000/api/people', formData);
+            const idUser = responsePerson.data.body
+            console.log("id persona: ", idUser);
+            const updatedUserData = {
+                ...userData,
+                Id: idUser
+            }
+            console.log("Usuario: ", updatedUserData);
+            await axios.post('http://localhost:4000/api/users', updatedUserData);
+        } catch (error) {
+            console.error("Error al crear registro: ", error);
+        }
     };
 
     return(
