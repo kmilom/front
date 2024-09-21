@@ -1,17 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const RegisterForm = () => {
 
-    const Genders = [
-        {
-            "Id": 1,
-            "Gender": "Masculino"
-        },
-        {
-            "Id": 2,
-            "Gender": "Femenino"
-        }
-    ];
+    const [genders, setGenders] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:4000/api/genders')
+        .then(response => {
+            if (Array.isArray(response.data.body)) {
+                setGenders(response.data.body);
+            } else {
+                console.error("La respuesta no es un array");
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener los datos: ", error);
+        });
+    }, []);
 
     const [formData, setFormData] = useState({
         Name: '',
@@ -106,7 +112,7 @@ const RegisterForm = () => {
                             required
                         >
                             <option value = "">Seleccione un g&eacute;nero</option>
-                            {Genders.map((gender) => (
+                            {genders.map((gender) => (
                                 <option key = {gender.Id} value = {gender.Id}>{gender.Gender}</option>
                             ))}
                         </select>
