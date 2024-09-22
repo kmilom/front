@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Logo from "../assets/logouser.png";
 
 const RegisterForm = () => {
 
     const [genders, setGenders] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:4000/api/genders')
@@ -54,17 +56,20 @@ const RegisterForm = () => {
         event.preventDefault();
         try {
             const responsePerson = await axios.post('http://localhost:4000/api/people', formData);
-            const idUser = responsePerson.data.body
-            console.log("id persona: ", idUser);
+            const idUser = responsePerson.data.body;
             const updatedUserData = {
                 ...userData,
                 Id: idUser
             }
-            console.log("Usuario: ", updatedUserData);
             await axios.post('http://localhost:4000/api/users', updatedUserData);
         } catch (error) {
             console.error("Error al crear registro: ", error);
         }
+
+        alert('Usuario registrado');
+        setTimeout(() => {
+            navigate('/');
+        }, 2000);
     };
 
     return(

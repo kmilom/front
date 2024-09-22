@@ -9,6 +9,13 @@ const Header = ({props}) => {
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
+    const taskModel = {
+        Title: '',
+        Description: '',
+        IdUser: '',
+        IdTaskState: ''
+    };
+
     return(
         <div className = "bg-blue-700 text-white text-lg py-2 grid grid-cols-8 mb-2">
             <div className = "col-span-2">Bienvenido, {props.Name} {props.LastName}</div>
@@ -19,7 +26,7 @@ const Header = ({props}) => {
             
             <Modal isOpen = {isModalOpen} closeModal = {closeModal}>
                 <h2 className="text-xl font-bold mb-4">Agregar nueva tarea</h2>
-                <TaskForm closeModal = {closeModal} title = {''} description = {''} />
+                <TaskForm closeModal = {closeModal} task = {taskModel} />
             </Modal>
         </div>
     );

@@ -2,16 +2,11 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const TaskForm = ({ closeModal, title, description }) => {
+const TaskForm = ({ closeModal, task }) => {
 
     const { id } = useParams();
 
-    const [formData, setFormData] = useState({
-        Title: title,
-        Description: description,
-        IdUser: id,
-        IdTaskState: 1
-    });
+    const [formData, setFormData] = useState(task);
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -25,7 +20,16 @@ const TaskForm = ({ closeModal, title, description }) => {
         event.preventDefault();
         closeModal();
         try {
-            await axios.post('http://localhost:4000/api/tasks', formData);
+            if (task.IdUser !== '') {
+                await axios.post('http://localhost:4000/api/tasks/editar', formData);
+            } else {
+                const dataComplete = {
+                    ...formData,
+                    IdUser: id,
+                    IdTaskState: 1
+                }
+                await axios.post('http://localhost:4000/api/tasks', dataComplete);
+            }
         } catch (error) {
             console.error("Error al crear registro: ", error);
         }
