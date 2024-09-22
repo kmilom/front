@@ -28,7 +28,7 @@ const LoginForm = () => {
             <form onSubmit = {handleSubmit} >
                 <div className = "mb-4 grid grid-cols-4">
                     <input className = "border border-gray-200 rounded-md col-span-2 col-start-2"
-                        placeholder = "Usuario"
+                        placeholder = " Usuario"
                         type = "text"
                         id = "Username"
                         name = "Username"
@@ -39,7 +39,7 @@ const LoginForm = () => {
                 </div>
                 <div className = "mb-4 grid grid-cols-4">
                     <input className = "border border-gray-200 rounded-md col-span-2 col-start-2"
-                    placeholder = "Contraseña"
+                    placeholder = " Contraseña"
                         type = "password"
                         id = "Password"
                         name = "Password"

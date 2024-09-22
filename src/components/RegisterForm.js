@@ -74,7 +74,7 @@ const RegisterForm = () => {
                 <form onSubmit = {handleSubmit} className = "grid grid-cols-12">
                     <div className = "mb-4 col-span-5 col-start-2">
                         <input className = "border border-gray-200 rounded-md"
-                            placeholder = "Nombre"
+                            placeholder = " Nombre"
                             type = "text"
                             id = "Name"
                             name = "Name"
@@ -85,7 +85,7 @@ const RegisterForm = () => {
                     </div>
                     <div className = "mb-4 col-span-5 col-start-8">
                         <input className = "border border-gray-200 rounded-md"
-                            placeholder = "Apellido"
+                            placeholder = " Apellido"
                             type = "text"
                             id = "LastName"
                             name = "LastName"
@@ -96,7 +96,7 @@ const RegisterForm = () => {
                     </div>
                     <div className = "mb-4  col-span-5 col-start-2">
                         <input className = "border border-gray-200 rounded-md"
-                            placeholder = "Correo electronico"
+                            placeholder = " Correo electronico"
                             type = "email"
                             id = "Email"
                             name = "Email"
@@ -132,7 +132,7 @@ const RegisterForm = () => {
                     </div>
                     <div className = "mb-4 grid justify-center col-span-12">
                         <input className = "border border-gray-200 rounded-md"
-                            placeholder = "Usuario"
+                            placeholder = " Usuario"
                             type = "text"
                             id = "Username"
                             name = "Username"
@@ -143,7 +143,7 @@ const RegisterForm = () => {
                     </div>
                     <div className = "mb-4 grid justify-center col-span-12">
                         <input className = "border border-gray-200 rounded-md"
-                            placeholder = "Contraseña"
+                            placeholder = " Contraseña"
                             type = "password"
                             id = "Password"
                             name = "Password"

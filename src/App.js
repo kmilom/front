@@ -4,6 +4,7 @@ import './App.css';
 import NotFound from './components/NotFound'
 import Home from './views/Home';
 import Register from './views/Register';
+import Session from './views/Session';
 
 
 
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: '/registro',
     element: <Register />
+  },
+  {
+    path: '/sesion/:id',
+    element: <Session />
   }
 ])
 
