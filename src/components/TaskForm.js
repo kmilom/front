@@ -1,28 +1,31 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react"; // Importa React y useState
+import { useParams } from "react-router-dom"; // Importa useParams para acceder a los parámetros de la URL
+import axios from "axios"; // Importa axios para hacer peticiones HTTP
 
 const TaskForm = ({ closeModal, task }) => {
+    const { id } = useParams(); // Obtiene el ID de los parámetros de la URL
 
-    const { id } = useParams();
+    const [formData, setFormData] = useState(task); // Inicializa el estado con los datos de la tarea
 
-    const [formData, setFormData] = useState(task);
-
+    // Maneja el cambio en los campos del formulario
     const handleChange = (event) => {
-        const {name, value} = event.target;
+        const { name, value } = event.target;
         setFormData({
             ...formData,
-            [name]: value
+            [name]: value // Actualiza el estado del formulario con los nuevos valores
         });
     };
 
+    // Maneja el envío del formulario
     const handleSubmit = async (event) => {
-        event.preventDefault();
-        closeModal();
+        event.preventDefault(); // Previene el comportamiento por defecto del formulario
+        closeModal(); // Cierra el modal después de enviar el formulario
         try {
+            // Si la tarea ya tiene un IdUser, actualiza la tarea existente
             if (task.IdUser !== '') {
                 await axios.post('http://localhost:4000/api/tasks/editar', formData);
             } else {
+                // Si es una nueva tarea, añade el IdUser y el estado de la tarea
                 const dataComplete = {
                     ...formData,
                     IdUser: id,
@@ -31,37 +34,37 @@ const TaskForm = ({ closeModal, task }) => {
                 await axios.post('http://localhost:4000/api/tasks', dataComplete);
             }
         } catch (error) {
-            console.error("Error al crear registro: ", error);
+            console.error("Error al crear registro: ", error); // Manejo de errores
         }
     }
 
-    return(
+    return (
         <div>
-            <form onSubmit = {handleSubmit}>
-                <div className = "mb-4">
-                    <input className = "border border-gray-200 rounded-md"
-                        placeholder = " Título"
-                        type = "text"
-                        id = "Title"
-                        name = "Title"
-                        value = {formData.Title}
-                        onChange = {handleChange}
+            <form onSubmit={handleSubmit}> {/* Maneja el envío del formulario */}
+                <div className="mb-4">
+                    <input className="border border-gray-200 rounded-md"
+                        placeholder=" Título"
+                        type="text"
+                        id="Title"
+                        name="Title"
+                        value={formData.Title}
+                        onChange={handleChange} // Maneja el cambio en el campo
                         required
                     />
                 </div>
-                <div className = "mb-4">
-                    <input className = "border border-gray-200 rounded-md"
-                        placeholder = " Descripción"
-                        type = "text"
-                        id = "Description"
-                        name = "Description"
-                        value = {formData.Description}
-                        onChange = {handleChange}
+                <div className="mb-4">
+                    <input className="border border-gray-200 rounded-md"
+                        placeholder=" Descripción"
+                        type="text"
+                        id="Description"
+                        name="Description"
+                        value={formData.Description}
+                        onChange={handleChange} // Maneja el cambio en el campo
                         required
                     />
                 </div>
                 <div className="col-span-12 grid justify-center">
-                    <button type="submit" className = "p-3 bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                    <button type="submit" className="p-3 bg-blue-500 text-white py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
                         Guardar
                     </button>
                 </div>
@@ -70,4 +73,4 @@ const TaskForm = ({ closeModal, task }) => {
     );
 }
 
-export default TaskForm;
+export default TaskForm; // Exporta el componente TaskForm

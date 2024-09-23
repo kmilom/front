@@ -1,7 +1,7 @@
 # Inicialización del proyecto
 
 1. Clonar el repositorio: git clone https://github.com/kmilom/front.git
-2. Entrar en el directorio: cd back
+2. Entrar en el directorio: cd front
 3. Instalar dependencias: npm install
 4. Iniciar el proyecto: npm start
 
