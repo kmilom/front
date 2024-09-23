@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import TaskList from "../components/TaskList";
 
 const Session = () => {
 
     const { id } = useParams();
+    const navigate = useNavigate();
 
     const [personData, setPersonData] = useState(null);
     const [taskData, setTaskData] = useState([]);
 
     useEffect(() => {
         const fetchPerson = async () => {
-            const token = localStorage.getItem('token')
+            const token = localStorage.getItem('token');
+            const storedUserId = localStorage.getItem('userId');
+            if (!token || storedUserId !== id) {
+                navigate('/'); // Redirige si no hay token
+                return;
+              }
             try {
                 const response = await axios.get(`http://localhost:4000/api/people/${id}`,{
                     headers: {
@@ -37,7 +43,7 @@ const Session = () => {
 
         fetchPerson();
         fetchTasks();
-    }, [id, personData, taskData]);
+    }, [id, personData, taskData, navigate]);
 
     if (!personData || !taskData) {
         return <p>Loading person data...</p>;

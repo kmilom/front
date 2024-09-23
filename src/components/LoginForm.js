@@ -28,11 +28,9 @@ const LoginForm = () => {
             const response = await axios.get('http://localhost:4000/api/users/login', { params: formData });
             const token = response.data.body.token; 
             const userId = response.data.body.Id; 
-            console.log("respuesta: ", response);
-            console.log("Token: ", token);
-            console.log("ID: ", userId);
-            login(token); 
-            alert('Inicio de sesión exitoso');
+            localStorage.setItem('token', token);
+            localStorage.setItem('userId', userId);
+            login(token);
             navigate(`/sesion/${userId}`); 
         } catch (error) {
             console.error('Error al iniciar sesión:', error);

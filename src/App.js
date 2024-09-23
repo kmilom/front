@@ -6,8 +6,6 @@ import Home from './views/Home';
 import Register from './views/Register';
 import Session from './views/Session';
 
-
-
 const router = createBrowserRouter([
   {
     path: '/',
