@@ -13,8 +13,13 @@ const Session = () => {
 
     useEffect(() => {
         const fetchPerson = async () => {
+            const token = localStorage.getItem('token')
             try {
-                const response = await axios.get(`http://localhost:4000/api/people/${id}`);
+                const response = await axios.get(`http://localhost:4000/api/people/${id}`,{
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
                 setPersonData(response.data.body[0]);
             } catch (error) {
                 console.error('Error fetching person data:', error);
