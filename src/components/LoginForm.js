@@ -23,7 +23,6 @@ const LoginForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(formData);
         try {
             const response = await axios.get('http://localhost:4000/api/users/login', { params: formData });
             const token = response.data.body.token; 

@@ -45,7 +45,7 @@ const Session = () => {
         fetchTasks();
     }, [id, personData, taskData, navigate]);
 
-    if (!personData || !taskData) {
+    if (!personData) {
         return <p>Loading person data...</p>;
     }
 
